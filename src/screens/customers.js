@@ -1,6 +1,7 @@
 import CustomersList from '../components/customersList/customersList';
 import { Link } from 'react-router-dom';
-function Customers() {
+
+function Customers(props) {
     return (
         <div className='customersScreen'>
             <Link to='/addNewCustomer'>
@@ -8,7 +9,7 @@ function Customers() {
             </Link>
             <h1>Customers:</h1>
             <h2>Filtro de lista</h2>
-            <CustomersList />
+            <CustomersList firebaseDb={props.firebaseDb}/>
         </div>
     );
 }

@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import CustomerCard from '../customerCard/customerCard';
-import firebaseConfig from '../../firebaseConfig';
-
-const firebaseApp = initializeApp(firebaseConfig);
-const firebaseDb = getDatabase(firebaseApp);
-const customersRef = ref(firebaseDb, 'clientes');
 
 
 
-function CustomersList() {
+function CustomersList(props) {
     let [loading, setLoading] = useState(true);
     let [customersList, setcustomersList] = useState();
+    
+    const customersRef = ref(props.firebaseDb, 'clientes');
 
     onValue(customersRef, (snapshot) => {
         const res = Object.entries(snapshot.val());
